@@ -1,2 +1,2 @@
-# PyramidAcademy
-This is my work for the bootcamp!
+# GenSpark
+Various Java projects done for GenSpark.
