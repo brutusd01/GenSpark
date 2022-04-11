@@ -39,13 +39,10 @@ public class Main {
         System.out.println(String.format(Dialogue.line1, playerName));
         //Start the guessing game.
         GuessTheNumber();
-
     }
 
-    private static void GuessTheNumber() {
-        do
-        {
-            userInput = scan.nextLine();
+    private static void GuessTheNumber() { //This function starts the game. Read user input, see if it's correct.
+        do {userInput = scan.nextLine();
             try {
                 num = Integer.parseInt(userInput);
                 guesses++;
@@ -57,12 +54,10 @@ public class Main {
             }
         }
         while(num != privateNum);
-
         System.out.println(String.format(Dialogue.cont, playerName));
+
         boolean good = false;
-        while(!good)
-        {
-        switch (userInput = scan.nextLine()) {
+        while(!good) { switch (userInput = scan.nextLine()) {
             case "Y":
             case "y":
                 good = true;
@@ -78,36 +73,32 @@ public class Main {
         }
     }
 
-    private static void NewGame() {
+    private static void NewGame() { //This resets the numbers, adds a new number to guess, and starts over.
         System.out.println(String.format(Dialogue.newNum));
         privateNum = (int)(Math.random() * 20) + 1;
         guesses = 0;
         GuessTheNumber();
     }
 
-    static void AttemptNumber(int guess) {
+    static void AttemptNumber(int guess) { //This checks to see if
             if(guess == privateNum)
-            {
-                if(guesses == 1)
-                {
-                    System.out.println(String.format(Dialogue.firstTry));
+            {if(guesses == 1)
+                {System.out.println(String.format(Dialogue.firstTry));
                     return;
                 }
                 System.out.println(String.format(Dialogue.win, playerName, guesses));
                 return;
             }
-            if(guess > privateNum)
+            else if(guess > privateNum)
             {
                 System.out.println(String.format(Dialogue.high));
                 return;
             }
-            if(guess < privateNum)
+            else if(guess < privateNum)
             {
                 System.out.println(String.format(Dialogue.low));
-
             }
     }
-
 }
 
 
