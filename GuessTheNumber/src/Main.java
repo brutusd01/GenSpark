@@ -4,7 +4,7 @@ class Dialogue{ //Class to house the strings for dialogue.
     //Dialogue lines!
     static String intro = "Hello! Welcome to my game. First of all, what is your name?";
     static String enter = "%nInput your first name below:";
-    static String enter2 = "%nGuess a whole number.";
+    static String enter2 = "%nInvalid input. Guess a whole number only.";
     static String noName = "%nToo shy huh? That's fine.";
     static String line1 = "%nWell.. %s I have a number in mind." +
             "%nIt is between 1 and 20." +
@@ -16,13 +16,15 @@ class Dialogue{ //Class to house the strings for dialogue.
     static String cont = "%nWanna go again, %s?(Y/N)";
     static String newNum = "%nAwesome! I have a new number in mind.. Try to guess it!";
     static String end = "%nThat's fine, hope you have a good one!";
+    static String enter3 = "%nType Y or N.";
 }
 
 public class Main {
 
     public static int privateNum = (int)(Math.random() * 20) + 1;
     static int guesses = 0;
-    static int userGuess;
+    static String userInput;
+    static int num = 0;
     public static String playerName = "";
     public static Scanner scan = new Scanner(System.in);
 
@@ -36,7 +38,6 @@ public class Main {
         }
         System.out.println(String.format(Dialogue.line1, playerName));
         //Start the guessing game.
-
         GuessTheNumber();
 
     }
@@ -44,19 +45,36 @@ public class Main {
     private static void GuessTheNumber() {
         do
         {
-            userGuess = scan.nextInt();
-            guesses++;
-            AttemptNumber(userGuess);
+            userInput = scan.nextLine();
+            try {
+                num = Integer.parseInt(userInput);
+                guesses++;
+                AttemptNumber(num);
+                }
+             catch(Exception e)
+            {
+                System.out.println(String.format(Dialogue.enter2));
+            }
         }
-        while(userGuess != privateNum);
+        while(num != privateNum);
+
         System.out.println(String.format(Dialogue.cont, playerName));
-        switch (scan.next()) {
+        boolean good = false;
+        while(!good)
+        {
+        switch (userInput = scan.nextLine()) {
             case "Y":
+            case "y":
+                good = true;
                 NewGame();
                 break;
             case "N":
+            case "n":
                 System.out.println(String.format(Dialogue.end));
                 return;
+            default:
+                System.out.println(String.format(Dialogue.enter3));
+            }
         }
     }
 
