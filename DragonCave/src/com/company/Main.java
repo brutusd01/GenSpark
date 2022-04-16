@@ -23,40 +23,48 @@ class Dialogue{
 
 public class Main {
     static String input = "";
+    static String dialogue = "";
+
     public static void main(String[] args) {
 	// write your code here
         System.out.println(String.format(Dialogue.line1));
         Scanner console = new Scanner(System.in);
-        String dialogue = "";
-        Boolean end = false;
-        int choice;
-           while(!end)
-           {
-               input = console.nextLine();
-
-               try {
-                  choice = Integer.parseInt(input);
-                  System.out.println("\033[1m" + input+"\033[0m");
-
-                   switch (choice) {
-                       case 1:
-                           dialogue = Dialogue.fail;
-                           end = true;
-                           break;
-                       case 2:
-                           dialogue = Dialogue.win;
-                           end = true;
-                           break;
-                   }
-               }
-               catch(Exception e)
-               {
-                   System.out.println("Enter 1 or 2!");
-               }
-           }
-        System.out.println(String.format(dialogue));
+        dialogue = getChoice(console, dialogue);
+        System.out.println(String.format(dialogue)); //Prints the result.
         console.next();
 
+    }
+
+    public static String getChoice(Scanner console, String dialogue) {
+        boolean end = false;
+        int choice;
+        while(!end)
+        {
+            input = console.nextLine();
+
+            try {
+               choice = Integer.parseInt(input);
+               System.out.println("\033[1m" + input+"\033[0m");
+
+                switch (choice) {
+                    case 1:
+                        dialogue = Dialogue.fail;
+                        end = true;
+                        break;
+                    case 2:
+                        dialogue = Dialogue.win;
+                        end = true;
+                        break;
+                    default:
+                        System.out.println("Enter 1 or 2.");
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("Exception Caught: Not a whole number. Type a whole number.");
+            }
+        }
+        return dialogue;
     }
 
 }
