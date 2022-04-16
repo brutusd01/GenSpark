@@ -22,9 +22,9 @@ class Dialogue{ //Class to house the strings for dialogue.
 public class Main {
 
     public static int privateNum = (int)(Math.random() * 20) + 1;
-    static int guesses = 0;
-    static String userInput;
-    static int num = 0;
+    public static int guesses = 0;
+    public static String userInput;
+    public static int num = 0;
     public static String playerName = "";
     public static Scanner scan = new Scanner(System.in);
 
@@ -41,7 +41,7 @@ public class Main {
         GuessTheNumber();
     }
 
-    private static void GuessTheNumber() { //This function starts the game. Read user input, see if it's correct.
+    public static void GuessTheNumber() { //This function starts the game. Read user input, see if it's correct.
         do {userInput = scan.nextLine();
             try {
                 num = Integer.parseInt(userInput);
@@ -73,7 +73,7 @@ public class Main {
         }
     }
 
-    private static void NewGame() { //This resets the numbers, adds a new number to guess, and starts over.
+    public static void NewGame() { //This resets the numbers, adds a new number to guess, and starts over.
         System.out.println(String.format(Dialogue.newNum));
         privateNum = (int)(Math.random() * 20) + 1;
         guesses = 0;
