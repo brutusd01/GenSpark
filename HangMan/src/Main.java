@@ -46,6 +46,7 @@ public class Main {
     public static void ResetGame() {
         int random = (int)(Math.random() * words.length);
         wordToGuess = words[random];
+        missedWords.removeAll(missedWords);
         hiddenAnswer = "";
         for (int i = 0; i < wordToGuess.length(); i++) {
             hiddenAnswer += "_";
