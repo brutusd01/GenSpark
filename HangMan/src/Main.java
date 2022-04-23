@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -27,8 +28,13 @@ public class Main {
             try
             {
                 var input = scan.next();
+                if(!input.matches(".*[^a-z].*"))
+                {
                 GuessWord(input);
                 System.out.println(sb);
+                }
+                else
+                    System.out.println("Letters only!");
             } catch (Exception e)
             {
                 System.out.println("Caught exception: Invalid input type.");
@@ -67,10 +73,13 @@ public class Main {
         System.out.println(String.format("\033[1m%s\033[0m",guess));
         if(wordToGuess.contains(guess)) //if its a correct guess
         {
-            int index = wordToGuess.indexOf(guess);
             correct = guess.charAt(0);
-            sb.setCharAt(index,correct);
-
+            for (int i = 0; i < wordToGuess.length(); i++) {
+                if(wordToGuess.charAt(i) == correct)
+                {
+                    sb.setCharAt(i,correct);
+                }
+            }
             return;
         }
         else //if you got a wrong guess
