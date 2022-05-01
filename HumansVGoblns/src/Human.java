@@ -6,12 +6,18 @@ public class Human extends Entity {
         this.strength = STR;
         this.name = name;
     }
+    public Human()
+    {
+        this.health = 10;
+        this.strength = 5;
+        this.name = "";
+    }
 
 
     @Override
     public String toString()
     {
-        return "Name: " + this.name + ", HP: " + this.health + ", Strength:" + strength;
+        return "Human{: " + this.name + ", HP: " + this.getHealth() + ", Strength:" + strength + "}";
     }
 
     @Override
@@ -19,8 +25,8 @@ public class Human extends Entity {
         if(target != null) {
             int damage = (int)(Math.random() * getStrength());
             target.setHealth(target.getHealth() - damage);
-            if(damage > 0)System.out.println(String.format("%s took %s damage! They have %s health left!", target.name, damage, target.getHealth()));
-            else if(damage == 0) System.out.println("Uh oh, you missed!");
+            if(damage > 0)System.out.println(String.format("%n%s swings at %s for %s damage! They have %s health left!", this.name, target.name, damage, target.getHealth()));
+            else if(damage == 0) System.out.println(String.format("%nUh oh, %s missed!",this.name));
         }
         assert target != null;
         return target.getHealth();

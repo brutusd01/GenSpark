@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Land {
 
@@ -9,7 +10,7 @@ public class Land {
     HashMap<Character, Integer> lastPlayerPos; //Used to "move" where the player emoji is
     HashMap<Character, Integer> eventLoc;
     private int maxGoblins = 5;
-    public int goblinsLeft;
+    public int goblinsLeft = 0;
     public String human = "\uD83D\uDE0E";
     public String goblin = "\uD83D\uDC7F";
     public Boolean fight = false;
@@ -38,20 +39,29 @@ public class Land {
         pos.put('x',r);
         pos.put('y',c);
         lastPlayerPos = pos;
-        MovePlayer(player,r,c);
+        grid[r][c] = human;
+        //MovePlayer(player,r,c);
         player.position = pos;
     }
 
     void GenGoblins()
     {
+        goblinsLeft = 0; //Reset the count
         for (int i = 1; i <= maxGoblins; i++) {
             goblinsLeft++;
             var newGobo = new Goblin();
             newGobo.position = new HashMap<>();
             int r = (int) (Math.random() * (rows-1)) + 1;
             int c = (int) (Math.random() * (columns-1)) + 1;
-            if (!grid[r][c].equals("*") || !grid[r][c].equals(human))
+            if (grid[r][c].equals("*"))
             {
+                grid[r][c] = goblin;
+                newGobo.setPosition(r,c);
+            }
+            else while(!Objects.equals(grid[r][c], "*"))
+            { //Redo the randomization until it finds an untaken spot
+                r = (int) (Math.random() * (rows-1)) + 1;
+                c = (int) (Math.random() * (columns-1)) + 1;
                 grid[r][c] = goblin;
                 newGobo.setPosition(r,c);
             }
