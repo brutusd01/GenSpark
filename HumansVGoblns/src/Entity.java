@@ -2,27 +2,27 @@ import java.util.HashMap;
 
 abstract class Entity {
     String name = "";
-    float health = 5f;
-    float strength = 2f;
+    int health = 5;
+    int strength = 2;
     HashMap<Character, Integer> position;
 
-    abstract Entity attack(Entity target);
+    abstract int attack(Entity target);
 
-    public void setHealth(float hp)
+    public void setHealth(int hp)
     {
         this.health = hp;
     }
 
-    public float getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setStrength(float str)
+    public void setStrength(int str)
     {
         this.strength = str;
     }
 
-    public float getStrength() {
+    public int getStrength() {
         return strength;
     }
 
