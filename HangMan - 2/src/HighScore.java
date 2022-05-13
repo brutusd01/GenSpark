@@ -34,7 +34,8 @@ public class HighScore
     public void SaveScore(String name, float score){
         try {
             Files.writeString(Paths.get(scoresPath),
-                    String.format("%s , %s", name, score), StandardOpenOption.APPEND);
+                    String.format("%s%s , %s", System.lineSeparator(), name, score)
+                    , StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
