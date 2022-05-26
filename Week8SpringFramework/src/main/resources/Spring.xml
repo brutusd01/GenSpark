@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+
+    <context:component-scan base-package="org.genspark"/>
+
+
+    <bean id="GoodyBStudent" class="org.genspark.Student" init-method="init" destroy-method="destroy">
+        <property name="id" value="3183"/>
+        <property name="name" value="Val D. Torian"/>
+        <property name="phone" ref="FLNumber"/>
+        <property name="address" ref="FLAddress"/>
+    </bean>
+
+    <bean id="FLNumber" class = "org.genspark.Phone">
+        <property name="number" value="+1-234-567-8910"/>
+    </bean>
+
+    <bean id ="FLAddress" class="org.genspark.Address">
+        <property name="city" value="Tampa"/>
+        <property name="state" value="FL"/>
+        <property name="country" value="United States"/>
+        <property name="zipcode" value="123456"/>
+    </bean>
+
+</beans>
