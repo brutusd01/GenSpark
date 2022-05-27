@@ -1,11 +1,13 @@
 package org.genspark;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("SudoStudent")
+@Component(value="sudo")
 public class Student
 {
     private int id;
@@ -14,6 +16,17 @@ public class Student
     @Autowired
     private Address address;
 
+    public Student()
+    {
+    }
+
+    public Student (int id, String name, List<Phone> phoneList, Address address)
+    {
+        this.id = id;
+        this.name = name;
+        this.phone = phoneList;
+        this.address = address;
+    }
     public void init()
     {
         System.out.println("Fetching student..");
@@ -55,7 +68,6 @@ public class Student
     public void setAddress(Address address) {
         this.address = address;
     }
-
 
 
     @Override

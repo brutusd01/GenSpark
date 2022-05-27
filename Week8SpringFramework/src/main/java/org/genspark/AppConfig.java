@@ -1,5 +1,6 @@
 package org.genspark;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,28 +10,13 @@ import java.util.List;
 @Configuration
 public class AppConfig {
 
-    @Bean
-    public Student getDStudent()
-    {
-        Student DStudent = new Student();
-        DStudent.setName("Dee Lin Quent");
-        DStudent.setId(5890);
-        DStudent.setAddress(DAddress());
-        DStudent.setPhone(DPhone());
 
-        return DStudent;
-    }
 
     @Bean
+    @Autowired
     public Address DAddress()
     {
-        Address dAdress = new Address();
-        dAdress.setCity("Atlanta");
-        dAdress.setCountry("United States");
-        dAdress.setState("Georgia");
-        dAdress.setZipcode("58234");
-
-        return dAdress;
+        return new Address("Atlanta", "Georgia", "USA", "522354" );
     }
 
     @Bean
@@ -41,6 +27,12 @@ public class AppConfig {
         list.add("+1-000-000-0000");
         list.add("+1-000-123-4678");
         return list;
+    }
+
+    @Bean
+    public Student DeeStudent()
+    {
+        return new Student(5890, "Dee Lin Quent", DPhone(), DAddress());
     }
 
 }

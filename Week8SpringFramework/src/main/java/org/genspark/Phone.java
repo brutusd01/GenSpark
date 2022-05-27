@@ -1,5 +1,6 @@
 package org.genspark;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -7,10 +8,10 @@ public class Phone {
 
     private String number;
 
-    public Phone(String num) {
-        this.number = num;
+    @Autowired
+    public Phone(String number) {
+        this.number = number;
     }
-
 
     @Override
     public String toString() {

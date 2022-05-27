@@ -11,7 +11,7 @@ public class App {
 
 
     public static void main(String[] args) {
-        //XMLContainer();
+       // XMLContainer();
         //AnnotationsContainer();
         JavaSourceContainer();
     }
@@ -27,12 +27,13 @@ public class App {
     private static void AnnotationsContainer()
     {
         AbstractApplicationContext component = new ClassPathXmlApplicationContext("Spring.xml");
-        Student sudo = (Student) component.getBean("SudoStudent");
+        Student sudo = (Student) component.getBean("sudo");
         sudo.setName("Saluta Torian");
         sudo.setId(1040);
-        ArrayList list = new ArrayList<>();
-        list.add("+1-150-160-1880");
-        sudo.setPhone(list);
+        ArrayList phones = new ArrayList<>();
+        phones.add("+1-150-160-1880");
+        sudo.setPhone(phones);
+        sudo.setAddress(new Address("West Chase", "FL", "USA", "12345"));
         System.out.println("\nThe student's name is.." + sudo.getName());
         System.out.println("\nSudo to string output: \n" + sudo);
         component.close();
@@ -40,9 +41,9 @@ public class App {
 
     private static void JavaSourceContainer()
     {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext jsc = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        Student D = ctx.getBean(Student.class);
+        Student D = (Student) jsc.getBean(Student.class);
         System.out.println("\nThe student's name is.." + D.getName());
         System.out.println("\nD to string output: \n" + D);
     }
