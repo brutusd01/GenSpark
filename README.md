@@ -1,2 +1,2 @@
 # GenSpark
-Various Java projects done for GenSpark.
+Various Java projects done during employment at GenSpark.
