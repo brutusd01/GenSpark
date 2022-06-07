@@ -1,0 +1,75 @@
+<html>
+    <form action="/formHandler" method="post">
+        <ul>
+            <li>
+                <label for="name">Name:</label>
+                <input type="text" value="John Doe" id="name" name="user_name">
+            </li>
+            <li>
+                <label for="mail">E-mail:</label>
+                <input tpe="email" id="mail" name="user_email">
+            </li>
+            <li>
+                <label for="msg">Message:</label>
+                <textarea id="msg" name="user_message"></textarea>
+            </li>
+            <li class="button">
+                <button type="submit">Send Message</button>
+            </li>
+        </ul>
+    </form>
+    <style>
+        form{
+            margin: 0 auto;
+            width: 500 px;
+
+            padding: 1em;
+            border: 1px solid rgb(211, 234, 255);
+            border-radius: 1em;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        form li+li{
+            margin-top: 1em;
+        }
+
+        label{
+            display:inline-block;
+            width: 90px;
+            text-align: right;
+        }
+
+        input,textarea{
+            font: 1em sans-serif;
+
+            width: 300px;
+            box-sizing: border-box;
+
+            border: 1px solid #999;
+        }
+
+        input:focus,textarea:focus {
+
+            border-color:rgb(211, 234, 255)
+        }
+
+        textarea{
+            vertical-align: top;
+            height: 5em;
+        }
+
+
+        .button{
+            padding-left: 90px;
+        }
+
+        button{
+            margin-left: .5em;
+        }
+    </style>
+</html>
